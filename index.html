@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicativo de TV por streaming</title>
+
+  <!-- SDK e Tailwind -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      transition: all 0.3s ease;
+      border-radius: 9999px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(45deg, #25d366, #128c7e);
+      transition: all 0.3s ease;
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .plan-card {
+      background: linear-gradient(145deg, #2d3748, #1a202c);
+      border: 1px solid #4a5568;
+    }
+    .plan-special {
+      border: 2px solid #ff6b6b;
+      position: relative;
+    }
+    .special-badge {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-full">
+
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg flex items-center justify-center">
+          <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+        </div>
+        <h1 id="site-title" class="text-2xl font-bold text-white">StreamMax</h1>
+      </div>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#filmes" class="text-gray-300 hover:text-white transition">Filmes</a>
+        <a href="#series" class="text-gray-300 hover:text-white transition">Séries</a>
+        <a href="#planos" class="text-gray-300 hover:text-white transition">Planos</a>
+        <a href="#contato" class="text-gray-300 hover:text-white transition">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="gradient-bg py-20 px-4">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 id="hero-title" class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+          Entretenimento Sem Limites
+        </h2>
+        <p id="hero-subtitle" class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+          Milhares de filmes e séries em alta qualidade. Assista quando e onde quiser, sem anúncios!
+        </p>
+        <a href="https://wa.me/5521965736076?text=Ol%C3%A1!+Gostaria+de+saber+mais+sobre+os+planos+de+streaming." target="_blank" class="btn-primary text-white px-8 py-4 text-lg font-semibold inline-block">
+          Clique Aqui e Saiba Mais
+        </a>
+      </div>
+    </section>
+
+    <!-- Filmes -->
+    <section id="filmes" class="py-16 px-4 bg-gray-800">
+      <div class="max-w-7xl mx-auto">
+        <h3 id="movies-title" class="text-4xl font-bold text-center mb-12 text-red-400">Filmes em Destaque</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-red-600 to-red-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Filme 1</span></div></div>
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-blue-600 to-blue-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Filme 2</span></div></div>
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-green-600 to-green-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Filme 3</span></div></div>
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-purple-600 to-purple-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Filme 4</span></div></div>
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-yellow-600 to-yellow-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Filme 5</span></div></div>
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-pink-600 to-pink-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Filme 6</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Séries -->
+    <section id="series" class="py-16 px-4 bg-gray-900">
+      <div class="max-w-7xl mx-auto">
+        <h3 id="series-title" class="text-4xl font-bold text-center mb-12 text-orange-400">Séries Populares</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-indigo-600 to-indigo-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Série 1</span></div></div>
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-teal-600 to-teal-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Série 2</span></div></div>
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-rose-600 to-rose-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Série 3</span></div></div>
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-cyan-600 to-cyan-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Série 4</span></div></div>
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-lime-600 to-lime-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Série 5</span></div></div>
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden"><div class="aspect-[2/3] bg-gradient-to-b from-amber-600 to-amber-800 flex items-center justify-center"><span class="text-white font-bold text-center px-2">Série 6</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Planos -->
+    <section id="planos" class="py-16 px-4 bg-gray-800">
+      <div class="max-w-6xl mx-auto">
+        <h3 id="plans-title" class="text-4xl font-bold text-center mb-12 text-red-400">Escolha Seu Plano</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+
+          <div class="plan-card rounded-xl p-8 text-center card-hover">
+            <h4 class="text-2xl font-bold mb-4 text-white">Mensal</h4>
+            <div class="text-4xl font-bold mb-6 text-red-400">R$ 24,90</div>
+            <p class="text-gray-300 mb-6">Acesso completo por 1 mês</p>
+            <a href="https://wa.me/5521965736076?text=Ol%C3%A1!+Quero+assinar+o+plano+Mensal." target="_blank" class="btn-whatsapp w-full py-3 rounded-lg text-white font-semibold inline-block text-center">
+              Assinar Agora
+            </a>
+          </div>
+
+          <div class="plan-card rounded-xl p-8 text-center card-hover">
+            <h4 class="text-2xl font-bold mb-4 text-white">Trimestral</h4>
+            <div class="text-4xl font-bold mb-6 text-orange-400">R$ 69,90</div>
+            <p class="text-gray-300 mb-6">Acesso completo por 3 meses</p>
+            <a href="https://wa.me/5521965736076?text=Ol%C3%A1!+Quero+assinar+o+plano+Trimestral." target="_blank" class="btn-whatsapp w-full py-3 rounded-lg text-white font-semibold inline-block text-center">
+              Assinar Agora
+            </a>
+          </div>
+
+          <div class="plan-card plan-special rounded-xl p-8 text-center card-hover">
+            <div class="special-badge text-white">Economize R$ 99,00</div>
+            <h4 class="text-2xl font-bold mb-4 text-white">Anual</h4>
+            <div class="text-4xl font-bold mb-6 text-green-400">R$ 199,90</div>
+            <p class="text-gray-300 mb-6">Acesso completo por 12 meses</p>
+            <a href="https://wa.me/5521965736076?text=Ol%C3%A1!+Quero+assinar+o+plano+Anual." target="_blank" class="btn-whatsapp w-full py-3 rounded-lg text-white font-semibold inline-block text-center">
+              Assinar Agora
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="py-16 px-4 bg-gray-900">
+      <div class="max-w-4xl mx-auto text-center">
+        <h3 class="text-4xl font-bold mb-8 text-white">Entre em Contato</h3>
+        <p class="text-xl text-gray-300 mb-8">Tire suas dúvidas ou assine já pelo WhatsApp!</p>
+
+        <a href="https://wa.me/5521965736076?text=Ol%C3%A1!+Gostaria+de+entrar+em+contato+com+a+equipe+StreamMax." target="_blank" class="btn-whatsapp px-8 py-4 rounded-full text-white text-lg font-semibold inline-flex items-center space-x-3">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+          <span>Entre em Contato Agora Conosco</span>
+        </a>
+      </div>
+    </section>
+
+        <div class="mt-12 flex justify-center space-x-6">
+          <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-pink-400 transition">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+          </a>
+
+          <a id="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 transition">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1
+```
