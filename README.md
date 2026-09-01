@@ -1,0 +1,381 @@
+[novo 1.txt](https://github.com/user-attachments/files/31671385/novo.1.txt)
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicativo de TV por streaming</title>
+
+  <!-- SDK e Tailwind -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      transition: all 0.3s ease;
+      border-radius: 9999px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(45deg, #25d366, #128c7e);
+      transition: all 0.3s ease;
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .plan-card {
+      background: linear-gradient(145deg, #2d3748, #1a202c);
+      border: 1px solid #4a5568;
+    }
+
+    .plan-special {
+      border: 2px solid #ff6b6b;
+      position: relative;
+    }
+
+    .special-badge {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* ======== 🌟 Cabeçalho Premium ======== */
+    .site-header {
+      position: relative;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f3460 100%);
+      color: white;
+      padding: 25px 0;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+
+    .header-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 70%),
+                  linear-gradient(135deg, rgba(255, 107, 107, 0.25), rgba(255, 215, 0, 0.2));
+      filter: blur(30px);
+      z-index: 1;
+    }
+
+    .header-container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      animation: logoGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes logoGlow {
+      from { filter: drop-shadow(0 0 5px #ff6b6b) drop-shadow(0 0 10px #ff6b6b); }
+      to { filter: drop-shadow(0 0 20px #ffd166) drop-shadow(0 0 30px #ffe066); }
+    }
+
+    .logo-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .logo-title span {
+      background: linear-gradient(45deg, #ff6b6b, #ffd166);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-weight: 500;
+    }
+
+    .nav-menu a {
+      color: #e2e8f0;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(45deg, #ff6b6b, #ffe066);
+      transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after { width: 100%; }
+
+    .btn-whatsapp {
+      background: linear-gradient(45deg, #25d366, #128c7e);
+      padding: 10px 20px;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(37, 211, 102, 0.6);
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+
+      .logo-img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
+
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-full">
+
+  <!-- 🌟 Novo Cabeçalho Premium -->
+  <header class="site-header">
+    <div class="header-overlay"></div>
+    <div class="header-container">
+      <div class="logo-area">
+        <!-- 👇 COLE AQUI O LINK DIRETO DA SUA LOGO -->
+        <img 
+          src="https://cdn.discordapp.com/attachments/1462810163315740866/1544171427861889124/WhatsApp_Image_2026-08-15_at_8.18.37_PM.jpeg?ex=6a978935&is=6a9637b5&hm=d1cc7bd37bd0ffdd954f77d4533ffd7f413e0cb4b8a7a5af2d04d6bc869f58b7&" 
+          alt="Husky Play" 
+          class="logo-img"
+        >
+        <h1 class="logo-title">Husky <span>Play</span></h1>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#filmes">Filmes</a>
+        <a href="#series">Séries</a>
+        <a href="#planos">Planos</a>
+        <a href="#contato">Contato</a>
+        <a href="https://wa.me/5521975254243" target="_blank" class="btn-whatsapp">WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  
+
+
+
+    <!-- Hero -->
+    <section class="app-background py-20 px-4">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 id="hero-title" class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+          Entretenimento Sem Limites
+        </h2>
+        <p id="hero-subtitle" class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+          Milhares de filmes e séries em alta qualidade. Assista quando e onde quiser, sem anúncios!
+        </p>
+        <a href="https://wa.me/5521975254243?text=Ol%C3%A1!+Gostaria+de+saber+mais+sobre+os+planos+de+streaming." target="_blank" class="btn-primary text-white px-8 py-4 text-lg font-semibold inline-block">
+          Clique Aqui e Saiba Mais
+        </a>
+      </div>
+    </section>
+
+    <!-- Filmes -->
+    <section id="filmes" class="py-16 px-4 bg-gray-800">
+      <div class="max-w-7xl mx-auto">
+        <h3 id="movies-title" class="text-4xl font-bold text-center mb-12 text-red-400">Filmes em Destaque</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://s2-gshow.glbimg.com/56ENuNMROH1S-do1PSrtvhYDF7s%3D/0x0%3A1080x1921/984x0/smart/filters%3Astrip_icc%28%29/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2024/B/z/B2erq5SsatSYfOcCvpXA/superman-o-legado.jpg" alt="Superman (2025)" class="w-full h-full object-cover" />
+</div>
+<div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://m.media-amazon.com/images/M/MV5BZGQwYmEzMzktYzBmMy00NmVmLTkyYTUtOTYyZjliZDNhZGVkXkEyXkFqcGc%40._V1_.jpg" alt="The Fantastic Four: First Steps (2025)" class="w-full h-full object-cover" />
+</div>
+<div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://m.media-amazon.com/images/M/MV5BNzM0Mjc2NzMtMzJhNy00Nzc3LTg4Y2MtOTkzYzEwYmMzZDZkXkEyXkFqcGc%40._V1_QL75_UX190_CR0%2C2%2C190%2C281_.jpg" alt="Mickey 17 (2025)" class="w-full h-full object-cover" />
+</div>
+<div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://m.media-amazon.com/images/M/MV5BOGM5MzA3MDAtYmEwMi00ZDNiLTg4MDgtMTZjOTc0ZGMyNTIwXkEyXkFqcGc%40._V1_.jpg" alt="Avengers: Secret Wars (2025)" class="w-full h-full object-cover" />
+</div>
+<div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/The_Plague_film_poster.jpg" alt="The Plague (2025)" class="w-full h-full object-cover" />
+</div>
+<div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://media-cache.cinematerial.com/p/500x/dmu6uk8v/avatar-the-last-airbender-movie-poster.jpg?v=1709621577" alt="Diablo (2025)" class="w-full h-full object-cover" />
+</div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Séries -->
+    <section id="series" class="py-16 px-4 bg-gray-900">
+      <div class="max-w-7xl mx-auto">
+        <h3 id="series-title" class="text-4xl font-bold text-center mb-12 text-orange-400">Séries Populares</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://m.media-amazon.com/images/I/813XJM3PSlL._AC_UF894%2C1000_QL80_.jpg" alt="Superman: Legacy (2025)" class="w-full h-full object-cover" />
+</div>
+<div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://m.media-amazon.com/images/M/MV5BODU0MGE1NzMtYzFiNS00OWY1LThmYTUtZDE5NDIwZDNmMWRlXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg" alt="Mickey 17 (2025)" class="w-full h-full object-cover" />
+</div>
+<div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://m.media-amazon.com/images/M/MV5BY2UzZGI1NTYtNzIyOC00ZTliLWJhNDItMWQxOTQwNWU0ODc3XkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg" alt="Diablo (2025)" class="w-full h-full object-cover" />
+</div>
+<div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://m.media-amazon.com/images/M/MV5BMTU3MDliMGEtMDQxNi00OTk1LTg1NWMtZDM2NmEwZDA1ZDk2XkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg" alt="The Fantastic Four: First Steps (2025)" class="w-full h-full object-cover" />
+</div>
+<div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://m.media-amazon.com/images/M/MV5BZDVmMzJkOWUtMjdjMi00NzA4LTgxMTItYjA4NjVjZDI0ZWU1XkEyXkFqcGc%40._V1_.jpg" alt="The Plague (2025)" class="w-full h-full object-cover" />
+</div>
+<div class="card-hover bg-gray-700 rounded-lg overflow-hidden">
+  <img src="https://m.media-amazon.com/images/M/MV5BNGQ1ZmZhN2UtNzdkYi00MjhiLWFkMjctZGMyMGEyM2M0MzYzXkEyXkFqcGc%40._V1_.jpg" alt="Avatar: The Last Airbender (2025)" class="w-full h-full object-cover" />
+</div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Planos -->
+    <section id="planos" class="py-16 px-4 bg-gray-800">
+      <div class="max-w-6xl mx-auto">
+        <h3 id="plans-title" class="text-4xl font-bold text-center mb-12 text-red-400">Escolha Seu Plano</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+
+          <div class="plan-card rounded-xl p-8 text-center card-hover">
+            <h4 class="text-2xl font-bold mb-4 text-white">Mensal</h4>
+            <div class="text-4xl font-bold mb-6 text-red-400">R$ 24,90</div>
+            <p class="text-gray-300 mb-6">Acesso completo por 1 mês</p>
+            <a href="https://wa.me/5521975254243?text=Ol%C3%A1!+Quero+assinar+o+plano+Mensal." target="_blank" class="btn-whatsapp w-full py-3 rounded-lg text-white font-semibold inline-block text-center">
+              Assinar Agora
+            </a>
+          </div>
+
+          <div class="plan-card rounded-xl p-8 text-center card-hover">
+            <h4 class="text-2xl font-bold mb-4 text-white">Trimestral</h4>
+            <div class="text-4xl font-bold mb-6 text-orange-400">R$ 69,90</div>
+            <p class="text-gray-300 mb-6">Acesso completo por 3 meses</p>
+            <a href="https://wa.me/5521975254243?text=Ol%C3%A1!+Quero+assinar+o+plano+Trimestral." target="_blank" class="btn-whatsapp w-full py-3 rounded-lg text-white font-semibold inline-block text-center">
+              Assinar Agora
+            </a>
+          </div>
+
+          <div class="plan-card plan-special rounded-xl p-8 text-center card-hover">
+            <div class="special-badge text-white">Economize R$ 99,00</div>
+            <h4 class="text-2xl font-bold mb-4 text-white">Anual</h4>
+            <div class="text-4xl font-bold mb-6 text-green-400">R$ 199,90</div>
+            <p class="text-gray-300 mb-6">Acesso completo por 12 meses</p>
+            <a href="https://wa.me/5521975254243?text=Ol%C3%A1!+Quero+assinar+o+plano+Anual." target="_blank" class="btn-whatsapp w-full py-3 rounded-lg text-white font-semibold inline-block text-center">
+              Assinar Agora
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="py-16 px-4 bg-gray-900">
+      <div class="max-w-4xl mx-auto text-center">
+        <h3 class="text-4xl font-bold mb-8 text-white">Entre em Contato</h3>
+        <p class="text-xl text-gray-300 mb-8">Tire suas dúvidas ou assine já pelo WhatsApp!</p>
+
+        <a href="https://wa.me/5521975254243?text=Ol%C3%A1!+Gostaria+de+entrar+em+contato+com+a+equipe+StreamMax." target="_blank" class="btn-whatsapp px-8 py-4 rounded-full text-white text-lg font-semibold inline-flex items-center space-x-3">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+          <span>Entre em Contato Agora Conosco</span>
+        </a>
+      </div>
+    </section>
+
+
+<!-- 🌐 Seção de Redes Sociais -->
+<section class="py-12 bg-gray-900 text-center">
+  <h2 class="text-2xl font-bold mb-6 text-white">Siga-nos nas redes sociais</h2>
+  <div class="flex justify-center gap-6">
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/HuskyPlay?locale=pt_BR" target="_blank" class="text-blue-600 hover:text-blue-500 transition-transform transform hover:scale-110">
+      <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.988h-2.54v-2.89h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.196 2.238.196v2.46h-1.26c-1.242 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33V21.88C18.343 21.128 22 16.991 22 12z"/>
+      </svg>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/husky.ctt?igsh=OWxrYmZzaDQ2Y2Js&utm_source=qr" target="_blank" class="text-pink-500 hover:text-pink-400 transition-transform transform hover:scale-110">
+      <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2zm0 1.5A4.26 4.26 0 0 0 3.5 7.75v8.5A4.26 4.26 0 0 0 7.75 20.5h8.5a4.26 4.26 0 0 0 4.25-4.25v-8.5A4.26 4.26 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.875a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25z"/>
+      </svg>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/5521975254243" target="_blank" class="text-green-500 hover:text-green-400 transition-transform transform hover:scale-110">
+      <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- 🌟 Rodapé com pagamentos e selos de segurança -->
+
+
+  <p class="text-gray-400 mt-8">© 2025 Husky Play. Todos os direitos reservados.</p>
+</footer>
+
