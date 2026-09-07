@@ -554,6 +554,57 @@
     const WHATSAPP_NUMBER = "5521975254243";
     const WHATSAPP_MESSAGE = "Opa! Queria solicitar meu teste grátis";
 
+    // ==========================================================
+    // IMAGENS DO CELULAR — COLE A URL DA IMAGEM HOSPEDADA
+    // Deixe "" para manter o visual original do bloco.
+    //
+    // Tamanhos recomendados:
+    // DESTAQUE: 1204 x 1100 px (proporção 301:275)
+    // FILMES:   566 x 576 px  (proporção 283:288)
+    // SÉRIES:   566 x 576 px  (proporção 283:288)
+    // CANAIS:   566 x 576 px  (proporção 283:288)
+    // ==========================================================
+    const PHONE_IMAGES = {
+      destaque: "https://media.discordapp.net/attachments/1545623744230334475/1546602731710451854/destaques.png?ex=6aa06189&is=6a9f1009&hm=7fc3d012f57f5024fadd869e267b53c57fd5e23703722530c020da136bd94c6b&=&format=webp&quality=lossless&width=768&height=702", // Ex.: "https://seusite.com/imagens/destaque.jpg"
+      filmes: "https://media.discordapp.net/attachments/1545623744230334475/1546602732259909692/filmes.png?ex=6aa06189&is=6a9f1009&hm=ca2107a9d61e03f8a6c38d945758db1686f53a2d82e5651e59dcff8f72ea6c4a&=&format=webp&quality=lossless&width=755&height=768",   // Ex.: "https://seusite.com/imagens/filmes.jpg"
+      series: "https://media.discordapp.net/attachments/1545623744230334475/1546602732708958318/series.png?ex=6aa06189&is=6a9f1009&hm=e2452dac6051963a6c41e69493285c1e4e672d5184ca035b316eafa4f7f3578e&=&format=webp&quality=lossless&width=755&height=768",   // Ex.: "https://seusite.com/imagens/series.jpg"
+      canais: "https://media.discordapp.net/attachments/1545623744230334475/1546602733400756264/canais.png?ex=6aa0618a&is=6a9f100a&hm=1844e09d1f133da7edcc78565d318009cf27822af57689108c3c174492567108&=&format=webp&quality=lossless&width=755&height=768"    // Ex.: "https://seusite.com/imagens/canais.jpg"
+    };
+
+    function applyPhoneImage(selector, imageUrl, overlay) {
+      if (!imageUrl || !imageUrl.trim()) return;
+
+      const element = document.querySelector(selector);
+      if (!element) return;
+
+      const safeUrl = imageUrl.trim().replace(/"/g, "%22");
+      element.style.backgroundImage = `${overlay}, url("${safeUrl}")`;
+      element.style.backgroundSize = "cover";
+      element.style.backgroundPosition = "center";
+      element.style.backgroundRepeat = "no-repeat";
+    }
+
+    applyPhoneImage(
+      ".hero-poster",
+      PHONE_IMAGES.destaque,
+      "linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.90))"
+    );
+    applyPhoneImage(
+      ".mini-card:nth-child(1)",
+      PHONE_IMAGES.filmes,
+      "linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.58))"
+    );
+    applyPhoneImage(
+      ".mini-card:nth-child(2)",
+      PHONE_IMAGES.series,
+      "linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.58))"
+    );
+    applyPhoneImage(
+      ".mini-card:nth-child(3)",
+      PHONE_IMAGES.canais,
+      "linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.58))"
+    );
+
     function whatsappUrl() {
       if (!/^\d{10,15}$/.test(WHATSAPP_NUMBER)) {
         return null;
